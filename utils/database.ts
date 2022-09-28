@@ -1,4 +1,4 @@
-import { connect, disconnect } from "mongoose";
+import { connect, disconnect, connection } from "mongoose";
 import { Genre, GenreCollection } from "../models/Genre";
 
 export const createDB = async () => {
@@ -10,6 +10,7 @@ export const createDB = async () => {
   try {
     const uridb = process.env.URIDB || "mongodb://localhost:27017";
     await connect(uridb);
+    await GenreCollection.deleteMany({});
     await GenreCollection.create(genres);
   } catch {
     console.log("Error al crear los generos");

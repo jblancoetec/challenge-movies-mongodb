@@ -20,7 +20,7 @@ describe("Test Genres Collection", () => {
   });
 
   test("Despues de agregar el genero de terror, este debe existir en la base de datos ", async () => {
-    await db.addGenre("Terror");
+    await db.addGenre({ name: "Terror" });
     const genres = await db.getGenres();
     const namesOfGenres = genres.map((genre) => genre.name);
     expect(namesOfGenres).toContain("Terror");
@@ -28,11 +28,6 @@ describe("Test Genres Collection", () => {
 });
 
 describe("Test Movies Collection", () => {
-  test("Deberian existir tres peliculas", async () => {
-    const movies = await db.getMovies();
-    expect(movies.length).toBeGreaterThanOrEqual(3);
-  });
-
   test("Deberia poder agregarse Star Wars como pelicula", async () => {
     const movie = {
       title: "Star Wars",
@@ -67,5 +62,10 @@ describe("Test Movies Collection", () => {
     const movies = await db.getMovies();
     const titlesOfMovies = movies.map((movie) => movie.title);
     expect(titlesOfMovies).toContain("El Padrino");
+  });
+
+  test("Deberian existir tres peliculas", async () => {
+    const movies = await db.getMovies();
+    expect(movies.length).toBeGreaterThanOrEqual(3);
   });
 });

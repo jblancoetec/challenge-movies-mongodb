@@ -9,7 +9,7 @@ class DBMovies {
     throw new Error("Method not implemented.");
   }
 
-  async addGenre(genre: string) {
+  async addGenre(genre: Genre) {
     throw new Error("Method not implemented.");
   }
 
